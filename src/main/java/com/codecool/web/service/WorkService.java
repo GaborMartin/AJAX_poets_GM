@@ -9,4 +9,5 @@ import java.util.List;
 public interface WorkService {
     List<Work> getAllWorksForPoetById(int id) throws SQLException;
     Work getWorkForPoetById(int poetId, int workId) throws SQLException, ServiceException;
+    int getOccurenceOfSubstringInWork(int workId, String subString) throws SQLException, ServiceException;
 }

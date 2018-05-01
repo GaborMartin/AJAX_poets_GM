@@ -34,4 +34,22 @@ public class SimpleWorkService implements WorkService {
             throw new ServiceException(ex.getMessage());
         }
     }
+
+    @Override
+    public int getOccurenceOfSubstringInWork(int workId, String subString) throws SQLException, ServiceException {
+        try {
+            int occurence = workDao.getOccurenceOfSubstringInWork(workId,subString);
+            if (occurence == -1) {
+                throw new ServiceException("Invalid database operation!");
+            }
+            if (subString == null || subString.equals("") ) {
+                throw new ServiceException("Substring cannot be empty!");
+            }
+            return occurence;
+        } catch (NumberFormatException ex) {
+            throw new ServiceException("Work id must be an integer!");
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
 }
