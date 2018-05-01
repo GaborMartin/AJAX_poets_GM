@@ -54,9 +54,10 @@
 
     <div id="work-content" class="hidden content">
         <h3>Which word are you looking for?</h3>
-        <form>
-            <input type="text">
-            <button type="button">Search</button>
+        <form id="seeker" onsubmit="return false;">
+            <input name="substring" type="text">
+            <button type="button" onclick="onSearchClicked()">Search</button><br>
+            <br><h3>Occurence of the expression: <span id="occurence"></span></h3>
         </form>
         <h3>Content:</h3>
         <p><span id="contentofwork"></span></p>
