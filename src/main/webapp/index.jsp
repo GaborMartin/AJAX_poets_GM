@@ -33,8 +33,7 @@
     </div>
 
     <div id="profile-content" class="hidden content">
-        <h1>Logged in as:</h1>
-        <h3><span id="poet-name"></span></h3>
+        <h2>Logged in as: <span id="poet-name"></span></h2>
     </div>
 
     <div id="works-content" class="hidden content">
@@ -58,6 +57,7 @@
             <input name="substring" type="text">
             <button type="button" onclick="onSearchClicked()">Search</button><br>
             <br><h3>Occurence of the expression: <span id="occurence"></span></h3>
+            <div id="error"></div>
         </form>
         <h3>Content:</h3>
         <p><span id="contentofwork"></span></p>
