@@ -1,12 +1,34 @@
 let worksTableEl;
 let worksTableBodyEl;
 
+
+function onWorkClicked() {
+    const workId = this.dataset.workId;
+
+    const params = new URLSearchParams();
+    params.append('id', workId);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onWorkResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'protected/work?' + params.toString());
+    xhr.send();
+
+}
+
 function appendWork(work) {
     const idTdEl = document.createElement('td');
     idTdEl.textContent = work.id;
 
+    const titleaEl = document.createElement('a');
+    titleaEl.textContent = work.title;
+    titleaEl.href = 'javascript:void(0);';
+    titleaEl.dataset.workId = work.id;
+    titleaEl.addEventListener('click', onWorkClicked);
+
     const titleTdEl = document.createElement('td');
-    titleTdEl.textContent = work.title;
+    titleTdEl.appendChild(titleaEl);
+
 
     const dateTdEl = document.createElement('td');
     dateTdEl.textContent = work.publishedDate;
