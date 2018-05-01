@@ -1,8 +1,8 @@
 /*
     Database initialization script that runs on every web-application redeployment.
 */
-DROP TABLE IF EXISTS poets;
 DROP TABLE IF EXISTS works;
+DROP TABLE IF EXISTS poets;
 
 CREATE TABLE poets (
     id SERIAL PRIMARY KEY,
