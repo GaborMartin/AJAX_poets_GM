@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DatabaseWorkDao extends AbstractDao implements WorkDao {
 
-    DatabaseWorkDao(Connection connection) {
+    public DatabaseWorkDao(Connection connection) {
         super(connection);
     }
 

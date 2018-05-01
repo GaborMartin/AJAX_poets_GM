@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class DatabasePoetDao extends AbstractDao implements PoetDao {
 
 
-    DatabasePoetDao(Connection connection) {
+    public DatabasePoetDao(Connection connection) {
         super(connection);
     }
 
