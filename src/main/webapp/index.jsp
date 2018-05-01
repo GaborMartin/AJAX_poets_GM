@@ -53,7 +53,7 @@
     </div>
 
     <div id="work-content" class="hidden content">
-        <h3>Which word are you looking for?</h3>
+        <h3>What expression are you looking for?</h3>
         <form id="seeker" onsubmit="return false;">
             <input name="substring" type="text">
             <button type="button" onclick="onSearchClicked()">Search</button><br>
