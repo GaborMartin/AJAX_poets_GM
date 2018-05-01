@@ -26,8 +26,10 @@ public class WorkServlet extends AbstractServlet {
             WorkDao workDao = new DatabaseWorkDao(connection);
             WorkService workService = new SimpleWorkService(workDao);
             int loggedinPoetId = ((Poet)req.getSession().getAttribute("poet")).getId();
+            HttpSession session = req.getSession();
 
             String workId = req.getParameter("id");
+            session.setAttribute("workId", workId);
 
             Work work = workService.getWorkForPoetById(loggedinPoetId, Integer.parseInt(workId));
 
@@ -36,6 +38,24 @@ public class WorkServlet extends AbstractServlet {
             sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection connection = getConnection(req.getServletContext())) {
+            WorkDao workDao = new DatabaseWorkDao(connection);
+            WorkService workService = new SimpleWorkService(workDao);
+
+            String subString = req.getParameter("substring");
+            String workId = req.getSession().getAttribute("workId").toString();
+
+            int occurenceOfSubstring = workService.getOccurenceOfSubstringInWork(Integer.parseInt(workId), subString);
+            sendMessage(resp, HttpServletResponse.SC_OK, occurenceOfSubstring);
+        } catch (SQLException e) {
+            handleSqlError(resp, e);
+        } catch (ServiceException e) {
+            sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
         }
     }
 }
