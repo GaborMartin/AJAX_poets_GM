@@ -8,7 +8,8 @@ function onSearchResponse() {
     if (this.status === OK) {
         searchSubstring(JSON.parse(this.responseText));
     } else {
-        onOtherResponse(workContentDivEl, this);
+        const errorDivEl = document.getElementById('error');
+        onOtherResponse(errorDivEl, this);
     }
 }
 
