@@ -50,6 +50,24 @@ public class DatabaseWorkDao extends AbstractDao implements WorkDao {
         }
     }
 
+    @Override
+    public int getOccurenceOfSubstringInWork(int workId, String substring) throws SQLException {
+        String sql = "SELECT length((SELECT content FROM works WHERE id = ?)) " +
+                "- length(replace((SELECT content FROM works WHERE id = ?), ?, '')) " +
+                "AS occurence";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1,workId);
+            preparedStatement.setInt(2,workId);
+            preparedStatement.setString(3,substring);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("occurence");
+                }
+            }
+            return -1;
+        }
+    }
+
     private Work fetchWork(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String title = resultSet.getString("title");
