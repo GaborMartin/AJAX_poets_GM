@@ -53,11 +53,12 @@
     </div>
 
     <div id="work-content" class="hidden content">
-        <h3>Content</h3>
+        <h3>Which word are you looking for?</h3>
         <form>
             <input type="text">
-            <button type="button"></button>
-        </form>>
+            <button type="button">Search</button>
+        </form>
+        <h3>Content:</h3>
         <p><span id="contentofwork"></span></p>
     </div>
 
